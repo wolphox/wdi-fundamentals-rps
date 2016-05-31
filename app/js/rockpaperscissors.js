@@ -1,14 +1,31 @@
-////////////////////////////////////////////////
-/*   Provided Code - Please Don't Edit   */
-////////////////////////////////////////////////
-'use strict';
+
+playToThree();
 
 function getInput() {
-    console.log("Please choose either 'rock', 'paper', or 'scissors'.")
-    return prompt();
+  
+    var valid = false;
+    
+    while (valid === false)
+    {
+        var result = prompt();
+    
+        if (result === "rock" ||result === "paper" ||result === "scissors")
+            {   
+                valid = true;
+                return result;
+            }
+    
+        else { 
+            alert("\n\n********************\nBad move!\n\nType in lowercase and choose\n\n'rock'\n\n'paper\n\nOR\n\n'scissors'\n\n********************\n")
+            valid = false;
+        }   
+    }
 }
+
 function randomPlay() {
+    
     var randomNumber = Math.random();
+    
     if (randomNumber < 0.33) {
         return "rock";
     } else if (randomNumber < 0.66) {
@@ -17,39 +34,88 @@ function randomPlay() {
         return "scissors";
     }
 }
-////////////////////////////////////////////////
-/*           Write Your Code Below            */
-////////////////////////////////////////////////
-
-function getPlayerMove(move) {
-    // Write an expression that operates on a variable called `move`
-    // If a `move` has a value, your expression should evaluate to that value.
-    // However, if `move` is not specified / is null, your expression should equal `getInput()`.
-    return /* Your Expression */;
-}
 
 function getComputerMove(move) {
-    // Write an expression that operates on a variable called `move`
-    // If a `move` has a value, your expression should evaluate to that value.
-    // However, if `move` is not specified / is null, your expression should equal `randomPlay()`.
-    return /* Your Expression */;
+    
+    return randomPlay();
 }
 
-function getWinner(playerMove,computerMove) {
-    var winner;
-    // Write code that will set winner to either 'player', 'computer', or 'tie' based on the values of playerMove and computerMove.
-    // Assume that the only values playerMove and computerMove can have are 'rock', 'paper', and 'scissors'.
-    // The rules of the game are that 'rock' beats 'scissors', 'scissors' beats 'paper', and 'paper' beats 'rock'.
-    /* YOUR CODE HERE */
-    return winner;
+function getWinner(playerMove, computerMove) {
+var winner = "";
+        if (playerMove === "rock" && computerMove === "rock")
+             { winner = "Tie!"; }
+       
+        else if (playerMove === "rock" && computerMove === "paper")
+             { winner = "Computer Wins!"; }
+          
+        else if (playerMove === "rock" && computerMove === "scissors")
+             { winner =  "Player Wins!"; }
+       
+        else if (playerMove === "paper" && computerMove === "rock")
+             { winner =  "Player Wins!"; }
+             
+        else if (playerMove === "paper" && computerMove === "paper")
+             { winner =  "Tie!"; }
+           
+        else if (playerMove === "paper" && computerMove === "scissors")
+             { winner =  "Computer Wins!"; }
+            
+        else if (playerMove === "scissors" && computerMove === "rock")
+             { winner =  "Computer Wins!"; }
+            
+        else if (playerMove === "scissors" && computerMove === "paper")
+             { winner =  "Player Wins!"; }
+             
+        else if (playerMove === "scissors" && computerMove === "scissors")
+             { winner =  "Tie!"; }
+             
+       
+     return winner;
 }
 
-function playToFive() {
-    console.log("Let's play Rock, Paper, Scissors");
+function playToThree() {
+    
+    alert("\n\n********************\nLet's play Rock, Paper, Scissors!\n\nFirst to 3 wins!\n\n********************\n");
+    
     var playerWins = 0;
     var computerWins = 0;
-    // Write code that plays 'Rock, Paper, Scissors' until either the player or the computer has won five times.
-    /* YOUR CODE HERE */
-    return [playerWins, computerWins];
+    
+    while (playerWins < 3 && computerWins < 3)
+    {
+        var playerMove = getInput();
+        var computerMove = randomPlay();
+        var winner = getWinner(playerMove, computerMove);
+            
+       
+        
+        if (winner === "Computer Wins!")
+        {
+            computerWins +=1
+        }
+        else if (winner === "Player Wins!")
+        {
+            playerWins +=1
+        }
+        else (winner === "Tie!")
+            {
+                
+            }
+            
+        alert("\n********************\n********************\n\nYou played "+ playerMove+"\nComputer played "+computerMove+"\n\n"+winner+"\n\nThe score is...\nPlayer: "+playerWins+"\nComputer: "+computerWins+"\n\n********************\n********************\n")
+                    
+        if (playerWins === 3)
+            {
+                alert("\n\n********************\nYOU WIN!!!!!!!!\n\n********************\n");
+                break;
+            }
+        else if (computerWins === 3)
+            {
+                alert("\n\n********************\nYou lost.\n\n********************\n");
+                break;
+            }
+        
+    }
+    return
 }
+
 
